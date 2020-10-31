@@ -1,0 +1,29 @@
+.card {
+  border: none;
+  padding: 5% 0;
+  height: 40vh;
+
+  .card-contents {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3vw;
+
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .card-description {
+      width: 30vw;
+      .card-price-calories {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

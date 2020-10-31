@@ -1,0 +1,27 @@
+.login-page {
+  .login-content {
+    padding: 7%;
+    display: flex;
+    height: 100%;
+    gap: 5vw;
+
+    img {
+      width: 35vw;
+      border-radius: 50%;
+    }
+    form {
+      height: 50vh;
+      width: 35vw;
+      margin: auto 0;
+      input {
+        margin-top: 3vh;
+        font-size: 20px;
+      }
+      button {
+        margin-top: 5vh;
+        height: 5vh;
+        font-size: 20px;
+      }
+    }
+  }
+}

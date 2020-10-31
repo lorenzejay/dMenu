@@ -1,0 +1,12 @@
+.landing-page {
+  .landing-page-contents {
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .landing-page-mission-statement {
+      margin-top: 5vh;
+    }
+  }
+}

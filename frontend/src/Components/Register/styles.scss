@@ -1,0 +1,27 @@
+.register-page {
+  height: 88vh;
+  .register-content {
+    padding: 7%;
+    display: flex;
+    height: 100%;
+    gap: 5vw;
+
+    img {
+      width: 35vw;
+    }
+    form {
+      height: 70vh;
+      width: 35vw;
+      input {
+        margin-top: 3vh;
+        font-size: 16px;
+        height: 5vh;
+      }
+      button {
+        margin-top: 3vh;
+        height: 7vh;
+        font-size: 18px;
+      }
+    }
+  }
+}
