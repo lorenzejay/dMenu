@@ -5,51 +5,113 @@ import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
 
-import { getUserDetails } from "../Redux/Actions/userActions";
+import { getUserMenuDetails, updateMenu } from "../Redux/Actions/userActions";
 
 const AdminScreen = ({ history }) => {
   const dispatch = useDispatch();
+  //GET MENU
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const userDetails = useSelector((state) => state.userDetails);
   const { isLoading, error, user } = userDetails;
   const [menu, setMenu] = useState([]);
+  const menuUpdate = useSelector((state) => state.menuUpdate);
+  const { success } = menuUpdate;
 
-  console.log(user);
+  //UPDATE MENU
+  const [menuItemName, setMenuItemName] = useState("");
+  const [menuItemImage, setMenuItemImage] = useState("");
+  const [menuItemCalories, setMenuItemCalories] = useState();
+  const [menuItemDescription, setMenuItemDescription] = useState("");
+  const [menuItemPrice, setMenuItemPrice] = useState();
+  const [menuItemCategory, setMenuItemCategory] = useState("");
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
     } else {
       if (!user.menu) {
-        dispatch(getUserDetails("profile"));
+        dispatch(getUserMenuDetails("menu"));
       } else {
         setMenu(user.menu);
       }
     }
-  }, [dispatch, history, user, userInfo]);
-  console.log(menu);
+  }, [dispatch, history, user, userInfo, success]);
+
+  useEffect(() => {
+    if (success) {
+      dispatch(getUserMenuDetails("menu"));
+    }
+  }, [success]);
+
+  const handleUpdate = () => {
+    dispatch(
+      updateMenu({
+        name: menuItemName,
+        image: menuItemImage,
+        description: menuItemDescription,
+        category: menuItemCategory,
+        price: menuItemPrice,
+        calories: menuItemCalories,
+      })
+    );
+  };
 
   return (
     <div className="admin-screen">
-      <Link to="/user/menu">Menu</Link>
+      <Link to="/user/menu">View Menu Here</Link>
       {isLoading && <Loader />}
       {error && <Message variant="danger">{error}</Message>}
 
       <div className="admin-content">
         <form className="admin-add-item-form">
           <h3>Add Items to your Menu</h3>
-          <input placeholder="Dish Name" />
-          <input placeholder="Image" />
-          <input placeholder="Calories" />
-          <input placeholder="Description" />
-          <input placeholder="Price" />
-          <button>Add New Dish</button>
+          <input
+            placeholder="Dish Name"
+            type="text"
+            value={menuItemName}
+            onChange={(e) => setMenuItemName(e.target.value)}
+          />
+          <input
+            placeholder="Image"
+            type="text"
+            value={menuItemImage}
+            onChange={(e) => setMenuItemImage(e.target.value)}
+          />
+          <input
+            placeholder="Calories"
+            type="number"
+            value={menuItemCalories || ""}
+            onChange={(e) => setMenuItemCalories(e.target.value)}
+          />
+          <input
+            placeholder="Category"
+            type="text"
+            value={menuItemCategory}
+            onChange={(e) => setMenuItemCategory(e.target.value)}
+          />
+          <input
+            placeholder="Description"
+            type="text"
+            value={menuItemDescription}
+            onChange={(e) => setMenuItemDescription(e.target.value)}
+          />
+          <input
+            placeholder="Price"
+            type="text"
+            value={menuItemPrice || ""}
+            onChange={(e) => setMenuItemPrice(e.target.value)}
+          />
+
+          <button type="button" onClick={handleUpdate}>
+            Add your new dish
+          </button>
         </form>
         <div className="admin-menu">
           <Table striped bordered hover variant="dark">
             <tbody>
               <tr>
-                <th>Dish</th>
+                <th>Food</th>
                 <th>Image</th>
                 <th>Calories</th>
                 <th>Description</th>

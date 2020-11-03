@@ -100,4 +100,58 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { userAuth, registerUser, getUserProfile, updateUserProfile };
+const getUserMenu = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      restaurantName: user.restaurantName,
+      menu: user.menu,
+    });
+  } else {
+    res.status(404);
+    throw new Error("Menu not found");
+  }
+});
+
+const updateMenu = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    // user.menu = [
+    //   ...user.menu,
+    //   {
+    //     name: req.body.name,
+    //     image: req.body.image,
+    //     description: req.body.description,
+    //     category: req.body.category,
+    //     price: req.body.price,
+    //     calories: req.body.calories,
+    //   },
+    // ];
+    // const updatedMenu = await user.save();
+    const updatedMenu = await User.update(
+      { _id: user._id },
+      {
+        $push: {
+          menu: {
+            name: req.body.name,
+            image: req.body.image,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            calories: req.body.calories,
+          },
+        },
+      }
+    );
+
+    res.status(200).json({ menu: updatedMenu.menu });
+  } else {
+    res.status(404);
+    throw new Error("Unable to update menu");
+  }
+});
+
+export { userAuth, registerUser, getUserProfile, updateUserProfile, getUserMenu, updateMenu };

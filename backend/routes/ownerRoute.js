@@ -4,6 +4,8 @@ import {
   userAuth,
   registerUser,
   updateUserProfile,
+  updateMenu,
+  getUserMenu,
 } from "../controller/ownerController.js";
 import { protect } from "../middlewares/userMiddlewares.js";
 
@@ -21,5 +23,6 @@ router.route("/").post(registerUser);
 //@Route is /api/profile
 //@Access is private
 router.route("/profile").get(protect, getUserProfile).put(protect, updateUserProfile);
+router.route("/menu").get(protect, getUserMenu).put(protect, updateMenu);
 
 export default router;

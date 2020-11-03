@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MenuItemCard from "../Components/MenuItemCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserDetails } from "../Redux/Actions/userActions";
+import { getUserMenuDetails } from "../Redux/Actions/userActions";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
 
@@ -17,7 +17,7 @@ const MenuScreens = ({ history }) => {
       history.push("/login");
     } else {
       if (user === {}) {
-        dispatch(getUserDetails("profile"));
+        dispatch(getUserMenuDetails("menu"));
       }
     }
   }, [userInfo, user]);
