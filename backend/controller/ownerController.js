@@ -106,12 +106,14 @@ const getUserMenu = asyncHandler(async (req, res) => {
   if (user) {
     res.json({
       _id: user._id,
+      name: user.name,
       restaurantName: user.restaurantName,
+      email: user.email,
       menu: user.menu,
     });
   } else {
     res.status(404);
-    throw new Error("Menu not found");
+    throw new Error("User not found");
   }
 });
 
