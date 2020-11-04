@@ -1,3 +1,4 @@
+import { set } from "mongoose";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -44,6 +45,22 @@ const AdminScreen = ({ history }) => {
     }
   }, [success]);
 
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(error);
+    });
+  const handleSetImage = async (e) => {
+    setMenuItemImage(e.target.value);
+    console.log(e.target.files[0]);
+    const file = e.target.files[0];
+    const convertedFile = await toBase64(file);
+    console.log(convertedFile);
+    setMenuItemImage(convertedFile);
+  };
+
   const handleUpdate = () => {
     dispatch(
       updateMenu({
@@ -72,12 +89,7 @@ const AdminScreen = ({ history }) => {
             value={menuItemName}
             onChange={(e) => setMenuItemName(e.target.value)}
           />
-          <input
-            placeholder="Image"
-            type="text"
-            value={menuItemImage}
-            onChange={(e) => setMenuItemImage(e.target.value)}
-          />
+          <input type="file" accept="image/png, image/jpeg" onChange={handleSetImage} />
           <input
             placeholder="Calories"
             type="number"
