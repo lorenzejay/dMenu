@@ -153,11 +153,33 @@ in the middleares
 //   }
 // });
 
+// get a users menu
+// GET /:id/menu
+// PRIVATE
 export const getUserMenu = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
     res.json(user.menu);
+  } else {
+    res.status(400);
+    throw new Error("User not Found");
+  }
+});
+
+// add users menu
+// POST /:id/menu
+// PRIVATE
+export const createUserMenu = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  const { name, image, description, category, price, calories } = req.body;
+  if (user) {
+    const newMenuItem = { name, image, description, category, price, calories };
+
+    user.menu.push(newMenuItem);
+
+    await user.save();
+    res.status(201).json({ message: "Menu Item Created" });
   } else {
     res.status(400);
     throw new Error("User not Found");
