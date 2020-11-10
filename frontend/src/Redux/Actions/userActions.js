@@ -15,6 +15,9 @@ import {
   USER_UPDATE_MENU_REQUEST,
   USER_UPDATE_MENU_SUCCESS,
   USER_UPDATE_MENU_FAIL,
+  USER_GET_MENU_REQUEST,
+  USER_GET_MENU_SUCCESS,
+  USER_GET_MENU_FAIL,
 } from "../Types/userTypes";
 import axios from "axios";
 
@@ -133,6 +136,31 @@ export const updateMenu = (menu) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_MENU_FAIL,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+
+//updated actions
+
+//get user menu
+export const getMenu = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_GET_MENU_REQUEST });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get(`/api/users/${id}/menu`, config);
+    dispatch({ type: USER_GET_MENU_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_GET_MENU_FAIL,
       payload:
         error.response && error.response.data.message ? error.response.data.message : error.message,
     });
