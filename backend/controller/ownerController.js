@@ -56,104 +56,112 @@ const registerUser = asyncHandler(async (req, res) => {
 in the middleares
 */
 //GET
-const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+// const getUserProfile = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.user._id);
+
+//   if (user) {
+//     res.json({
+//       _id: user._id,
+//       name: user.name,
+//       restaurantName: user.restaurantName,
+//       email: user.email,
+//       menu: user.menu,
+//     });
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
+
+// //@put
+// const updateUserProfile = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.user._id);
+//   if (user) {
+//     user.name = req.body.name || user.name;
+//     user.restaurantName = req.body.restaurantName || user.restaurantName;
+//     if (req.body.password) {
+//       user.password = req.body.password;
+//     }
+//     user.menu = req.body.menu || user.menu;
+
+//     const updatedUser = await user.save();
+
+//     res.json({
+//       _id: updatedUser._id,
+//       name: updatedUser.name,
+//       restaurantName: updatedUser.restaurantName,
+//       password: updatedUser.password,
+//       menu: updatedUser.menu,
+//       token: generateToken(updatedUser._id),
+//     });
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
+
+// const getUserMenu = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.user._id);
+
+//   if (user) {
+//     res.json({
+//       _id: user._id,
+//       name: user.name,
+//       restaurantName: user.restaurantName,
+//       email: user.email,
+//       menu: user.menu,
+//     });
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
+
+// const removeMenuItem = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.user._id);
+//   if (user) {
+//     await User.update({ _id: user._id }, { $unset: { "users.menu": req.body.menuItem } });
+
+//     await User.update({ _id: user._id }, { $pull: { menu: null } });
+//   }
+//   res.json(user.menu);
+// });
+
+// const updateMenu = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.user._id);
+//   if (user) {
+//     const updatedMenu = await User.update(
+//       { _id: user._id },
+//       {
+//         $push: {
+//           menu: {
+//             name: req.body.name,
+//             image: req.body.image,
+//             description: req.body.description,
+//             category: req.body.category,
+//             price: req.body.price,
+//             calories: req.body.calories,
+//           },
+//         },
+//       }
+//     );
+
+//     res.status(200).json({ menu: updatedMenu.menu });
+//   } else {
+//     res.status(404);
+//     throw new Error("Unable to update menu");
+//   }
+// });
+
+export const getUserMenu = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
 
   if (user) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      restaurantName: user.restaurantName,
-      email: user.email,
-      menu: user.menu,
-    });
+    res.json(user.menu);
   } else {
-    res.status(404);
-    throw new Error("User not found");
+    res.status(400);
+    throw new Error("User not Found");
   }
 });
 
-//@put
-const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  if (user) {
-    user.name = req.body.name || user.name;
-    user.restaurantName = req.body.restaurantName || user.restaurantName;
-    if (req.body.password) {
-      user.password = req.body.password;
-    }
-    user.menu = req.body.menu || user.menu;
-
-    const updatedUser = await user.save();
-
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      restaurantName: updatedUser.restaurantName,
-      password: updatedUser.password,
-      menu: updatedUser.menu,
-      token: generateToken(updatedUser._id),
-    });
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-});
-
-const getUserMenu = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-
-  if (user) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      restaurantName: user.restaurantName,
-      email: user.email,
-      menu: user.menu,
-    });
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-});
-
-const updateMenu = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-
-  if (user) {
-    // user.menu = [
-    //   ...user.menu,
-    //   {
-    //     name: req.body.name,
-    //     image: req.body.image,
-    //     description: req.body.description,
-    //     category: req.body.category,
-    //     price: req.body.price,
-    //     calories: req.body.calories,
-    //   },
-    // ];
-    // const updatedMenu = await user.save();
-    const updatedMenu = await User.update(
-      { _id: user._id },
-      {
-        $push: {
-          menu: {
-            name: req.body.name,
-            image: req.body.image,
-            description: req.body.description,
-            category: req.body.category,
-            price: req.body.price,
-            calories: req.body.calories,
-          },
-        },
-      }
-    );
-
-    res.status(200).json({ menu: updatedMenu.menu });
-  } else {
-    res.status(404);
-    throw new Error("Unable to update menu");
-  }
-});
-
-export { userAuth, registerUser, getUserProfile, updateUserProfile, getUserMenu, updateMenu };
+export { userAuth, registerUser };
