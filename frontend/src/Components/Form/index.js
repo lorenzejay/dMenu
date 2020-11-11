@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const Form = ({ title, children, handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form-default" onSubmit={handleSubmit}>
       <h1>{title}</h1>
       {children}
     </form>
