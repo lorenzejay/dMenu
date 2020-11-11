@@ -185,5 +185,28 @@ export const createUserMenu = asyncHandler(async (req, res) => {
     throw new Error("User not Found");
   }
 });
+// update users menu item
+// PUT /menu/:id
+// PRIVATE
+export const updateMenuItem = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const { name, image, description, category, price, calories } = req.body;
+  if (user) {
+    //find the selected menu item id
+    const menuItem = user.menu.id(req.params.id);
+    console.log(user.menu.id(req.params.id));
+    (menuItem.name = name || menuItem.name),
+      (menuItem.image = image || menuItem.image),
+      (menuItem.description = description || menuItem.description),
+      (menuItem.category = category || menuItem.category);
+    (menuItem.price = price || menuItem.price), (menuItem.calories = calories || menuItem.calories);
+
+    await user.save();
+    res.json(menuItem);
+  } else {
+    res.status(400);
+    throw new Error("User not Found");
+  }
+});
 
 export { userAuth, registerUser };
