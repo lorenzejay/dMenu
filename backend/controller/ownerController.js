@@ -185,6 +185,21 @@ export const createUserMenu = asyncHandler(async (req, res) => {
     throw new Error("User not Found");
   }
 });
+
+// GET users menu by id
+// get /:id/menu
+// PRIVATE
+export const getMenuItem = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  if (user) {
+    const menuItem = user.menu.id(req.params.id);
+    res.json(menuItem);
+  } else {
+    res.status(400);
+    throw new Error("Menu item not found");
+  }
+});
+
 // update users menu item
 // PUT /menu/:id
 // PRIVATE
