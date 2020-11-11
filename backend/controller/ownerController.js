@@ -178,8 +178,8 @@ export const createUserMenu = asyncHandler(async (req, res) => {
 
     user.menu.push(newMenuItem);
 
-    await user.save();
-    res.status(201).json({ message: "Menu Item Created" });
+    const newItem = await user.save();
+    res.status(201).json(newItem);
   } else {
     res.status(400);
     throw new Error("User not Found");
