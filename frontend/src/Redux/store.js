@@ -9,6 +9,7 @@ import {
   userLoginReducer,
   userMenuReducer,
   userRegisterReducer,
+  userUpdateMenuItemReducer,
   userUpdateMenuReducer,
 } from "./Reducers/userReducer";
 
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   userCreateMenuItem: userCreateMenuItemReducer,
   userGetMenuItem: userGetMenuItemReducer,
   userDeleteMenuItem: userDeleteMenuItemReducer,
+  userUpdateMenuItem: userUpdateMenuItemReducer,
 });
 const middlewares = [thunk];
 

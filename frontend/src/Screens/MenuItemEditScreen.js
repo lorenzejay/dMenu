@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
-import { getMenuItem } from "../Redux/Actions/userActions";
-import { FaTrash, FaEdit } from "react-icons/fa";
-import { USER_CREATE_MENU_RESET } from "../Redux/Types/userTypes";
+import { getMenuItem, updateMenuItem } from "../Redux/Actions/userActions";
 import axios from "axios";
 import MenuItemCard from "../Components/MenuItemCard";
 
@@ -18,7 +15,14 @@ const MenuItemEditScreen = ({ history, match }) => {
   const { userInfo } = userLogin;
 
   const userGetMenuItem = useSelector((state) => state.userGetMenuItem);
-  const { isLoading, error, success, menuItem } = userGetMenuItem;
+  const { isLoading, error, menuItem } = userGetMenuItem;
+
+  const userUpdateMenuItem = useSelector((state) => state.userUpdateMenuItem);
+  const {
+    isLoading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdateMenuItem;
 
   // const userCreateMenuItem = useSelector((state) => state.userCreateMenuItem);
   // const {
@@ -37,12 +41,24 @@ const MenuItemEditScreen = ({ history, match }) => {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
+    if (successUpdate) {
+      history.push("/user/menu");
+    }
     if (!userInfo) {
       history.push("/login");
     } else {
-      dispatch(getMenuItem(menuId));
+      if (!menuItem.name) {
+        dispatch(getMenuItem(menuId));
+      } else {
+        setName(menuItem.name);
+        setImage(menuItem.image);
+        setCalories(menuItem.calories);
+        setDescription(menuItem.description);
+        setPrice(menuItem.price);
+        setCategory(menuItem.category);
+      }
     }
-  }, []);
+  }, [dispatch, history, userInfo, menuId, menuItem, successUpdate]);
 
   const handleImageSubmit = async (e) => {
     const file = e.target.files[0];
@@ -65,10 +81,12 @@ const MenuItemEditScreen = ({ history, match }) => {
     }
   };
 
-  //   const handleUpdate = (e) => {
-  //     e.preventDefault();
-  //     dispatch(createMenuItem(userInfo._id, { name, image, calories, description, price, category }));
-  //   };
+  console.log(name, image, calories, description, price, category);
+
+  const handleUpdateMenuItem = (e) => {
+    e.preventDefault();
+    dispatch(updateMenuItem(menuId, { name, image, calories, description, price, category }));
+  };
 
   console.log(menuItem);
   return (
@@ -78,9 +96,11 @@ const MenuItemEditScreen = ({ history, match }) => {
       <div className="menu-item-edit-content">
         {isLoading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         <div className="menu-item-edit-form-item">
           <div className="menu-item-edit-form">
-            <form>
+            <form onSubmit={handleUpdateMenuItem}>
               <h1>Edit Item</h1>
               <input
                 placeholder="Name"
@@ -109,13 +129,13 @@ const MenuItemEditScreen = ({ history, match }) => {
               <input
                 placeholder="Price"
                 type="number"
-                value={price}
+                value={price || ""}
                 onChange={(e) => setPrice(e.target.value)}
               />
               <input
                 placeholder="Calories"
                 type="number"
-                value={calories}
+                value={calories || ""}
                 onChange={(e) => setCalories(e.target.value)}
               />
               <input
@@ -124,7 +144,7 @@ const MenuItemEditScreen = ({ history, match }) => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               />
-              <button type="submit">Add to menu</button>
+              <button type="submit">Update</button>
             </form>
           </div>
           <div>
