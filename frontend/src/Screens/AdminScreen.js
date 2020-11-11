@@ -157,7 +157,7 @@ const AdminScreen = ({ history }) => {
                   <td>{item.description}</td>
                   <td>${item.price}</td>
                   <td style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Link to="/user/menuitem/:id">
+                    <Link to={`/user/menuitem/${item._id}`}>
                       <FaEdit size={20} />
                     </Link>
 

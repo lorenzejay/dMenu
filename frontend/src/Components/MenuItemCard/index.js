@@ -6,7 +6,7 @@ const MenuItemCard = ({ item }) => {
     <div className="card">
       <div className="card-contents">
         <div className="card-image">
-          <img src={item.image}></img>
+          <img src={item.image} alt={item.name} />
         </div>
         <div className="card-description">
           <h2>{item.name}</h2>

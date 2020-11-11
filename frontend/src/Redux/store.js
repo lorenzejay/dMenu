@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   userCreateMenuItemReducer,
   userDetailsReducer,
+  userGetMenuItemReducer,
   userLoginReducer,
   userMenuReducer,
   userRegisterReducer,
@@ -18,6 +19,7 @@ const reducers = combineReducers({
 
   userMenu: userMenuReducer,
   userCreateMenuItem: userCreateMenuItemReducer,
+  userGetMenuItem: userGetMenuItemReducer,
 });
 const middlewares = [thunk];
 

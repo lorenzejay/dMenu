@@ -81,3 +81,41 @@
     }
   }
 }
+
+.menu-item-edit-screen {
+  padding: 5%;
+  .menu-item-edit-content {
+    margin-top: 5vh;
+    .menu-item-edit-form-item {
+      display: flex;
+      gap: 10vw;
+      .card {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        padding: 5%;
+        height: 35vh;
+        transition: 0.5s ease-in;
+        &:hover {
+          transform: scale(1.2);
+        }
+        .card-contents {
+          img {
+          }
+        }
+      }
+    }
+    .menu-item-edit-form {
+      width: 30%;
+      input {
+        margin: 5px 0;
+      }
+      textarea {
+        width: 100%;
+        outline: none;
+        padding: 5px;
+      }
+      button {
+        font-size: 22px;
+      }
+    }
+  }
+}
