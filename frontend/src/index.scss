@@ -15,32 +15,69 @@
 
 //admin screen
 .admin-screen {
+  padding: 5%;
+  button {
+    width: 100%;
+    align-self: flex-start;
+    margin: 5vh 0;
+    font-size: 18px;
+    padding: 5px;
+    text-transform: uppercase;
+  }
   .admin-content {
     display: flex;
-  }
-  .admin-add-item-form {
-    width: 35vw;
-    height: 75vh;
-    border-radius: 0;
+    flex-direction: column;
+    padding: 0;
 
-    input {
-      border-radius: 0;
-      margin: 5px 0;
+    .admin-create-table {
+      display: flex;
+      justify-content: space-between;
+      form {
+        margin-right: 2vw;
+        input {
+          margin: 5px 0;
+        }
+        textarea {
+          background-color: #ececec;
+          outline: none;
+          border: none;
+          padding: 5px;
+        }
+      }
     }
-    button {
-      font-size: 20px;
+    // .admin-add-item-form {
+    //   width: 35vw;
+    //   height: 75vh;
+    //   border-radius: 0;
+
+    //   input {
+    //     border-radius: 0;
+    //     margin: 5px 0;
+    //   }
+    //   button {
+    //     font-size: 20px;
+    //   }
+    // }
+    padding: 5%;
+
+    table {
+      width: 85%;
+      img {
+        width: 30px;
+        height: 50px;
+      }
+      a {
+        color: white;
+        margin: 0 10px;
+      }
+      th {
+        text-transform: uppercase;
+      }
+      td {
+        .table-btn {
+          padding: 5px;
+        }
+      }
     }
-  }
-  padding: 5%;
-  .admin-menu {
-    img {
-      width: 30px;
-      height: 50px;
-    }
-  }
-  table {
-    width: 55vw;
-    display: inline-block;
-    margin: 0 auto;
   }
 }
