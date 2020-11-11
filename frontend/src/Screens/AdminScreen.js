@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
-import Button from "../Components/Button/index";
 import { createMenuItem, getMenu } from "../Redux/Actions/userActions";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { USER_CREATE_MENU_RESET } from "../Redux/Types/userTypes";
+import axios from "axios";
 
 const AdminScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -32,6 +32,7 @@ const AdminScreen = ({ history }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
   const [category, setCategory] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     if (createSuccess) {
@@ -50,10 +51,32 @@ const AdminScreen = ({ history }) => {
     }
   }, [dispatch, history, userInfo, success, createSuccess]);
 
+  const handleImageSubmit = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload", formData, config);
+      setImage(data);
+      setUploading(false);
+    } catch (err) {
+      console.log(err);
+      setUploading(false);
+    }
+  };
+
   const handleCreate = (e) => {
     e.preventDefault();
     dispatch(createMenuItem(userInfo._id, { name, image, calories, description, price, category }));
   };
+
   return (
     <div className="admin-screen">
       <h1>Edit Menu</h1>
@@ -74,20 +97,22 @@ const AdminScreen = ({ history }) => {
               onChange={(e) => setName(e.target.value)}
             />
             <input
-              placeholder="Image"
+              placeholder="Image URL here or use selector below"
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
             />
+
+            <input name="image-selector" type="file" onChange={handleImageSubmit} />
+
             <textarea
               rows="4"
               cols="50"
               placeholder="Description"
               type="text"
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
-            >
-              {description}
-            </textarea>
+            ></textarea>
 
             <input
               placeholder="Price"
@@ -132,7 +157,7 @@ const AdminScreen = ({ history }) => {
                   <td>{item.description}</td>
                   <td>${item.price}</td>
                   <td style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Link to="/menu/:id">
+                    <Link to="/user/menuitem/:id">
                       <FaEdit size={20} />
                     </Link>
 
