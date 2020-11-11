@@ -222,5 +222,20 @@ export const updateMenuItem = asyncHandler(async (req, res) => {
     throw new Error("Item not Found");
   }
 });
+// delet users menu item
+// delete /menu/:id
+// PRIVATE
+export const deleteMenuItem = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const menuItem = await user.menu.id(req.params.id);
+  if (user) {
+    user.menu.pop(menuItem);
+    await user.save();
+    res.json("Menu item removed");
+  } else {
+    res.status(400);
+    throw new Error("Item not Found");
+  }
+});
 
 export { userAuth, registerUser };
