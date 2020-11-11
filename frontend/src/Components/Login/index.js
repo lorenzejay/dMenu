@@ -18,7 +18,7 @@ const Login = ({ history, location }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/user/adminpage");
+      history.push("/user/editmenu");
     }
   }, [history, userInfo]);
 

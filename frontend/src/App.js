@@ -16,7 +16,7 @@ function App() {
         <div className="app-contents">
           <Route exact path="/" component={LandingPage} />
           <Route path="/user/menu" component={MenuScreens} />
-          <Route path="/user/adminpage" component={AdminScreen} />
+          <Route path="/user/editmenu" component={AdminScreen} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </div>

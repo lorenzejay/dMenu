@@ -22,7 +22,7 @@ const Register = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/user/admin");
+      history.push("/user/editmenu");
     }
   }, [history, userInfo]);
 
