@@ -194,7 +194,6 @@ export const updateMenuItem = asyncHandler(async (req, res) => {
   if (user) {
     //find the selected menu item id
     const menuItem = user.menu.id(req.params.id);
-    console.log(user.menu.id(req.params.id));
     (menuItem.name = name || menuItem.name),
       (menuItem.image = image || menuItem.image),
       (menuItem.description = description || menuItem.description),
@@ -205,7 +204,7 @@ export const updateMenuItem = asyncHandler(async (req, res) => {
     res.json(menuItem);
   } else {
     res.status(400);
-    throw new Error("User not Found");
+    throw new Error("Item not Found");
   }
 });
 
