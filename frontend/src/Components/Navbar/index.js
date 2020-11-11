@@ -33,7 +33,7 @@ const Header = () => {
           <li>Welcome {userInfo.name}</li>
 
           <li>
-            <Link to="/user/adminpage">Admin</Link>
+            <Link to="/user/editmenu">Menu</Link>
           </li>
           <li>
             <Link to="/login" onClick={handleLogout}>
