@@ -18,6 +18,10 @@ import {
   USER_GET_MENU_REQUEST,
   USER_GET_MENU_SUCCESS,
   USER_GET_MENU_FAIL,
+  USER_CREATE_MENU_SUCCESS,
+  USER_CREATE_MENU_REQUEST,
+  USER_CREATE_MENU_FAIL,
+  USER_CREATE_MENU_RESET,
 } from "../Types/userTypes";
 
 const userLoginReducer = (initialState = {}, action) => {
@@ -98,6 +102,21 @@ export const userMenuReducer = (state = { menu: [] }, action) => {
       return { isLoading: false, success: true, menu: action.payload };
     case USER_GET_MENU_FAIL:
       return { isLoading: false, error: action.payload };
+    default:
+      return { ...state };
+  }
+};
+
+export const userCreateMenuItemReducer = (state = { menuItem: {} }, action) => {
+  switch (action.type) {
+    case USER_CREATE_MENU_REQUEST:
+      return { ...state, isLoading: true };
+    case USER_CREATE_MENU_SUCCESS:
+      return { isLoading: false, success: true, menuItem: action.payload };
+    case USER_CREATE_MENU_FAIL:
+      return { isLoading: false, error: action.payload };
+    case USER_CREATE_MENU_RESET:
+      return {};
     default:
       return { ...state };
   }
