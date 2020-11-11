@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
-import { createMenuItem, getMenu } from "../Redux/Actions/userActions";
+import { createMenuItem, deleteMenuItem, getMenu } from "../Redux/Actions/userActions";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { USER_CREATE_MENU_RESET } from "../Redux/Types/userTypes";
 import axios from "axios";
@@ -17,6 +17,13 @@ const AdminScreen = ({ history }) => {
 
   const userMenu = useSelector((state) => state.userMenu);
   const { isLoading, error, success, menu } = userMenu;
+
+  const userDeleteMenuItem = useSelector((state) => state.userDeleteMenuItem);
+  const {
+    isLoading: deleteLoading,
+    error: deleteError,
+    success: deleteSuccess,
+  } = userDeleteMenuItem;
 
   const userCreateMenuItem = useSelector((state) => state.userCreateMenuItem);
   const {
@@ -38,9 +45,9 @@ const AdminScreen = ({ history }) => {
     if (createSuccess) {
       setName("");
       setImage("");
-      setCalories();
+      setCalories("");
       setDescription("");
-      setPrice();
+      setPrice("");
       setCategory("");
       dispatch({ type: USER_CREATE_MENU_RESET });
     }
@@ -49,7 +56,7 @@ const AdminScreen = ({ history }) => {
     } else {
       dispatch(getMenu(userInfo._id));
     }
-  }, [dispatch, history, userInfo, success, createSuccess]);
+  }, [dispatch, history, userInfo, success, createSuccess, deleteSuccess]);
 
   const handleImageSubmit = async (e) => {
     const file = e.target.files[0];
@@ -77,6 +84,9 @@ const AdminScreen = ({ history }) => {
     dispatch(createMenuItem(userInfo._id, { name, image, calories, description, price, category }));
   };
 
+  const deleteItemHandler = (menuItemId) => {
+    dispatch(deleteMenuItem(menuItemId));
+  };
   return (
     <div className="admin-screen">
       <h1>Edit Menu</h1>
@@ -85,6 +95,8 @@ const AdminScreen = ({ history }) => {
       <div className="admin-content">
         {isLoading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
+        {createLoading && <Loader />}
+        {createError && <Message variant="danger">{createError}</Message>}
         <div className="admin-create-table">
           {createLoading && <Loader />}
           {createError && <Message>{createError}</Message>}
@@ -161,7 +173,11 @@ const AdminScreen = ({ history }) => {
                       <FaEdit size={20} />
                     </Link>
 
-                    <FaTrash size={20} style={{ cursor: "pointer" }} />
+                    <FaTrash
+                      size={20}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => deleteItemHandler(item._id)}
+                    />
                   </td>
                 </tr>
               </tbody>

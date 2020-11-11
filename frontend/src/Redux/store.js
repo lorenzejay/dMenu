@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   userCreateMenuItemReducer,
+  userDeleteMenuItemReducer,
   userDetailsReducer,
   userGetMenuItemReducer,
   userLoginReducer,
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   userMenu: userMenuReducer,
   userCreateMenuItem: userCreateMenuItemReducer,
   userGetMenuItem: userGetMenuItemReducer,
+  userDeleteMenuItem: userDeleteMenuItemReducer,
 });
 const middlewares = [thunk];
 

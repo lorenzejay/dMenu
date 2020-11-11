@@ -25,6 +25,9 @@ import {
   USER_GET_MENU_ITEM_FAIL,
   USER_GET_MENU_ITEM_SUCCESS,
   USER_GET_MENU_ITEM_REQUEST,
+  USER_DELETE_MENU_ITEM_REQUEST,
+  USER_DELETE_MENU_ITEM_SUCCESS,
+  USER_DELETE_MENU_ITEM_FAIL,
 } from "../Types/userTypes";
 
 const userLoginReducer = (initialState = {}, action) => {
@@ -131,6 +134,18 @@ export const userGetMenuItemReducer = (state = { menuItem: {} }, action) => {
     case USER_GET_MENU_ITEM_SUCCESS:
       return { isLoading: false, success: true, menuItem: action.payload };
     case USER_GET_MENU_ITEM_FAIL:
+      return { isLoading: false, error: action.payload };
+    default:
+      return { ...state };
+  }
+};
+export const userDeleteMenuItemReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_DELETE_MENU_ITEM_REQUEST:
+      return { ...state, isLoading: true };
+    case USER_DELETE_MENU_ITEM_SUCCESS:
+      return { isLoading: false, success: true };
+    case USER_DELETE_MENU_ITEM_FAIL:
       return { isLoading: false, error: action.payload };
     default:
       return { ...state };

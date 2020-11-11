@@ -24,6 +24,9 @@ import {
   USER_GET_MENU_ITEM_REQUEST,
   USER_GET_MENU_ITEM_SUCCESS,
   USER_GET_MENU_ITEM_FAIL,
+  USER_DELETE_MENU_ITEM_REQUEST,
+  USER_DELETE_MENU_ITEM_SUCCESS,
+  USER_DELETE_MENU_ITEM_FAIL,
 } from "../Types/userTypes";
 import axios from "axios";
 
@@ -211,6 +214,27 @@ export const getMenuItem = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_GET_MENU_ITEM_FAIL,
+      payload:
+        error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+export const deleteMenuItem = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_DELETE_MENU_ITEM_REQUEST });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    await axios.delete(`/api/users/menu/${id}`, config);
+    dispatch({ type: USER_DELETE_MENU_ITEM_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: USER_DELETE_MENU_ITEM_FAIL,
       payload:
         error.response && error.response.data.message ? error.response.data.message : error.message,
     });
