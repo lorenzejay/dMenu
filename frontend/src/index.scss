@@ -8,14 +8,38 @@
   min-height: 100vh;
 }
 
+//menu screen
 .menu-section {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  padding: 15px 0;
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
+  .menu-section-header {
+    margin: 5vh;
+  }
+  .menu-section-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    width: 100%;
+    p {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  .menu-section-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 //admin screen
 .admin-screen {
-  padding: 5%;
+  padding: 2%;
   button {
     width: 100%;
     align-self: flex-start;
@@ -27,21 +51,34 @@
   .admin-content {
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 3%;
 
     .admin-create-table {
       display: flex;
       justify-content: space-between;
+
       form {
         margin-right: 2vw;
-        input {
+        width: 25vw;
+        input,
+        textarea,
+        select {
           margin: 5px 0;
+        }
+        select {
+          width: 100%;
+          outline: none;
+          padding: 10px;
+          background-color: #ececec;
+          outline: none;
+          border: none;
         }
         textarea {
           background-color: #ececec;
           outline: none;
           border: none;
           padding: 5px;
+          width: 100%;
         }
       }
     }
@@ -58,10 +95,9 @@
     //     font-size: 20px;
     //   }
     // }
-    padding: 5%;
 
     table {
-      width: 85%;
+      width: 70%;
       img {
         width: 30px;
         height: 50px;
