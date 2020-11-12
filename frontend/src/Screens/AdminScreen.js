@@ -85,6 +85,7 @@ const AdminScreen = ({ history }) => {
   };
 
   const deleteItemHandler = (menuItemId) => {
+    window.confirm("Are you sure?");
     dispatch(deleteMenuItem(menuItemId));
   };
   return (
