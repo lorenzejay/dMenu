@@ -31,6 +31,7 @@ import {
   USER_UPDATE_MENU_ITEM_REQUEST,
   USER_UPDATE_MENU_ITEM_SUCCESS,
   USER_UPDATE_MENU_ITEM_FAIL,
+  USER_UPDATE_MENU_ITEM_RESET,
 } from "../Types/userTypes";
 
 const userLoginReducer = (initialState = {}, action) => {
@@ -162,6 +163,8 @@ export const userUpdateMenuItemReducer = (state = {}, action) => {
       return { isLoading: false, success: true, menuItem: action.payload };
     case USER_UPDATE_MENU_ITEM_FAIL:
       return { isLoading: false, error: action.payload };
+    case USER_UPDATE_MENU_ITEM_RESET:
+      return {};
     default:
       return { ...state };
   }

@@ -6,6 +6,7 @@ import Message from "../Components/Message";
 import { getMenuItem, updateMenuItem } from "../Redux/Actions/userActions";
 import axios from "axios";
 import MenuItemCard from "../Components/MenuItemCard";
+import { USER_UPDATE_MENU_ITEM_RESET } from "../Redux/Types/userTypes";
 
 const MenuItemEditScreen = ({ history, match }) => {
   const menuId = match.params.id;
@@ -24,14 +25,6 @@ const MenuItemEditScreen = ({ history, match }) => {
     success: successUpdate,
   } = userUpdateMenuItem;
 
-  // const userCreateMenuItem = useSelector((state) => state.userCreateMenuItem);
-  // const {
-  //   isLoading: createLoading,
-  //   error: createError,
-  //   success: createSuccess,
-  //   menuItem,
-  // } = userCreateMenuItem;
-
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [calories, setCalories] = useState();
@@ -42,6 +35,7 @@ const MenuItemEditScreen = ({ history, match }) => {
 
   useEffect(() => {
     if (successUpdate) {
+      dispatch({ type: USER_UPDATE_MENU_ITEM_RESET });
       history.push("/user/menu");
     }
     if (!userInfo) {
@@ -81,14 +75,11 @@ const MenuItemEditScreen = ({ history, match }) => {
     }
   };
 
-  console.log(name, image, calories, description, price, category);
-
   const handleUpdateMenuItem = (e) => {
     e.preventDefault();
     dispatch(updateMenuItem(menuId, { name, image, calories, description, price, category }));
   };
 
-  console.log(menuItem);
   return (
     <div className="menu-item-edit-screen">
       <Link to="/user/editmenu">Back</Link>
