@@ -139,12 +139,19 @@ const AdminScreen = ({ history }) => {
               value={calories}
               onChange={(e) => setCalories(e.target.value)}
             />
-            <input
+            <select onChange={(e) => setCategory(e.target.value)}>
+              <option value="">Select</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Drinks">Drinks</option>
+            </select>
+            {/* <input
               placeholder="Category"
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-            />
+            /> */}
             <button type="submit">Add to menu</button>
           </form>
           <Table striped bordered hover variant="dark">
