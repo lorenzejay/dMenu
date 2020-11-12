@@ -10,6 +10,7 @@ import { USER_CREATE_MENU_RESET } from "../Redux/Types/userTypes";
 import axios from "axios";
 
 const AdminScreen = ({ history }) => {
+  const [formError, setFormError] = useState("");
   const dispatch = useDispatch();
   //GET MENU
   const userLogin = useSelector((state) => state.userLogin);
@@ -81,7 +82,20 @@ const AdminScreen = ({ history }) => {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    dispatch(createMenuItem(userInfo._id, { name, image, calories, description, price, category }));
+    if (
+      name === "" ||
+      image === "" ||
+      calories === "" ||
+      description === "" ||
+      price === "" ||
+      category === ""
+    ) {
+      setFormError("All values must be filled in order to submit.");
+    } else {
+      dispatch(
+        createMenuItem(userInfo._id, { name, image, calories, description, price, category })
+      );
+    }
   };
 
   const deleteItemHandler = (menuItemId) => {
@@ -102,6 +116,7 @@ const AdminScreen = ({ history }) => {
           {createLoading && <Loader />}
           {createError && <Message>{createError}</Message>}
           <form onSubmit={handleCreate}>
+            {formError && <Message variant="danger">{formError}</Message>}
             <h1>Create Item</h1>
             <input
               placeholder="Name"
