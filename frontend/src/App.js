@@ -16,7 +16,7 @@ function App() {
         <Navbar />
         <div className="app-contents">
           <Route exact path="/" component={LandingPage} />
-          <Route path="/user/menu" component={MenuScreens} />
+          <Route path="/user/menu/:id" component={MenuScreens} />
           <Route path="/user/editmenu" component={AdminScreen} />
           <Route path="/user/menuitem/:id" component={MenuItemEditScreen} />
           <Route path="/login" component={Login} />

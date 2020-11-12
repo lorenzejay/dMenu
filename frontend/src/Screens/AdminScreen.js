@@ -91,7 +91,7 @@ const AdminScreen = ({ history }) => {
   return (
     <div className="admin-screen">
       <h1>Edit Menu</h1>
-      <Link to="/user/menu">View Menu Here</Link>
+      <Link to={`/user/menu/${userInfo._id}`}>View Menu Here</Link>
 
       <div className="admin-content">
         {isLoading && <Loader />}
@@ -155,6 +155,7 @@ const AdminScreen = ({ history }) => {
                 <th>Calories</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Category</th>
                 <th></th>
               </tr>
             </tbody>
@@ -169,6 +170,7 @@ const AdminScreen = ({ history }) => {
                   <td>{item.calories}</td>
                   <td>{item.description}</td>
                   <td>${item.price}</td>
+                  <td>{item.category}</td>
                   <td style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Link to={`/user/menuitem/${item._id}`}>
                       <FaEdit size={20} />
