@@ -36,7 +36,7 @@ const MenuItemEditScreen = ({ history, match }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_MENU_ITEM_RESET });
-      history.push("/user/menu");
+      history.push(`/user/menu/${menuId}`);
     }
     if (!userInfo) {
       history.push("/login");
