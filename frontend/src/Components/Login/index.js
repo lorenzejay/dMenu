@@ -30,10 +30,10 @@ const Login = ({ history, location }) => {
   return (
     <div className="login-page">
       {isLoading && <Loader />}
-      {error && <Message variant="danger">{error}</Message>}
       <div className="login-content">
         <img src={"/clipart/undraw_Chef_cu0r.png"} alt="chefs ready to cook." />
         <Form title="Login" handleSubmit={handleLogin}>
+          {error && <Message variant="danger">{error}</Message>}
           <Input
             placeholder="Email"
             name="email"

@@ -7,10 +7,11 @@
 
     img {
       width: 35vw;
-      border-radius: 50%;
+
+      object-fit: cover;
     }
     form {
-      height: 50vh;
+      max-height: 60vh;
       width: 35vw;
       margin: auto 0;
       input {
