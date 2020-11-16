@@ -24,6 +24,7 @@
     justify-content: center;
     gap: 5vw;
     width: 100%;
+    margin-top: 3vh;
     p {
       &:hover {
         text-decoration: underline;
@@ -34,6 +35,10 @@
   .menu-section-items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    border: none;
+    .card {
+      border: none;
+    }
   }
 }
 
