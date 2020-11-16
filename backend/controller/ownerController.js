@@ -33,7 +33,10 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Cannot Register, user already exists.");
   }
-
+  if (name === "" || email === "" || password === "" || restaurantName === "") {
+    res.status(400);
+    throw new Error("Please fill all missing fields.");
+  }
   const user = await User.create({ name, email, password, restaurantName });
   if (user) {
     res.status(201).json({
