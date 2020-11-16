@@ -31,7 +31,6 @@ const AdminScreen = ({ history }) => {
     isLoading: createLoading,
     error: createError,
     success: createSuccess,
-    menuItem,
   } = userCreateMenuItem;
 
   const [name, setName] = useState("");
@@ -110,11 +109,11 @@ const AdminScreen = ({ history }) => {
       <div className="admin-content">
         {isLoading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
-        {createLoading && <Loader />}
-        {createError && <Message variant="danger">{createError}</Message>}
         <div className="admin-create-table">
           {createLoading && <Loader />}
-          {createError && <Message>{createError}</Message>}
+          {createError && <Message variant="danger">{createError}</Message>}
+          {deleteLoading && <Loader />}
+          {deleteError && <Message variant="dangder">{deleteError}</Message>}
           <form onSubmit={handleCreate}>
             {formError && <Message variant="danger">{formError}</Message>}
             <h1>Create Item</h1>
@@ -124,13 +123,6 @@ const AdminScreen = ({ history }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <input
-              placeholder="Image URL here or use selector below"
-              type="text"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
-
             <input name="image-selector" type="file" onChange={handleImageSubmit} />
 
             <textarea
@@ -155,20 +147,15 @@ const AdminScreen = ({ history }) => {
               onChange={(e) => setCalories(e.target.value)}
             />
             <select onChange={(e) => setCategory(e.target.value)}>
-              <option value="">Select</option>
+              <option value="">Select Category</option>
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
               <option value="Dinner">Dinner</option>
               <option value="Drinks">Drinks</option>
             </select>
-            {/* <input
-              placeholder="Category"
-              type="text"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            /> */}
             <button type="submit">Add to menu</button>
           </form>
+
           <Table striped bordered hover variant="dark">
             <tbody>
               <tr>
