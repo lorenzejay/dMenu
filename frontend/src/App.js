@@ -17,10 +17,10 @@ function App() {
         <Navbar />
         <div className="app-contents">
           <Route exact path="/" component={LandingPage} />
-          <Route path="/user/menu/:id" component={MenuScreens} />
+          <Route path="/menu/:id" component={MenuScreens} />
           <Route path="/user/editmenu" component={AdminScreen} />
           <Route path="/qrcode/:id" component={QrCodeScreen} />
-          <Route path="/user/menuitem/:id" component={MenuItemEditScreen} />
+          <Route path="/menuitem/:id" component={MenuItemEditScreen} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </div>

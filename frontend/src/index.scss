@@ -178,8 +178,14 @@
 //qr code screen
 .qr-order-screen {
   display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   flex-direction: column;
+  padding: 5%;
+  .qr-content-screen {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }

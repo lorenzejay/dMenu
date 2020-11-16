@@ -105,7 +105,7 @@ const AdminScreen = ({ history }) => {
     <div className="admin-screen">
       <h1>Edit Menu</h1>
       <div className="admin-links">
-        <Link to={`/user/menu/${userInfo._id}`}>View Menu Here</Link>
+        <Link to={`/menu/${userInfo._id}`}>View Menu Here</Link>
         <Link to={`/qrcode/${userInfo._id}`}>View QR Code Here</Link>
       </div>
 
@@ -185,7 +185,7 @@ const AdminScreen = ({ history }) => {
                     <td>${item.price}</td>
                     <td>{item.category}</td>
                     <td style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Link to={`/user/menuitem/${item._id}`}>
+                      <Link to={`/menuitem/${item._id}`}>
                         <FaEdit size={20} />
                       </Link>
 
