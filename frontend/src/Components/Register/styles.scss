@@ -1,5 +1,5 @@
 .register-page {
-  height: 88vh;
+  min-height: 88vh;
   .register-content {
     padding: 7%;
     display: flex;
@@ -8,9 +8,10 @@
 
     img {
       width: 35vw;
+      object-fit: cover;
     }
     form {
-      height: 70vh;
+      height: 78vh;
       width: 35vw;
       input {
         margin-top: 3vh;
