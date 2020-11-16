@@ -31,7 +31,7 @@ const MenuItemEditScreen = ({ history, match }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
   const [category, setCategory] = useState("");
-  const [uploading, setUploading] = useState(false);
+  const [, setUploading] = useState(false);
 
   useEffect(() => {
     if (successUpdate) {
@@ -129,12 +129,13 @@ const MenuItemEditScreen = ({ history, match }) => {
                 value={calories || ""}
                 onChange={(e) => setCalories(e.target.value)}
               />
-              <input
-                placeholder="Category"
-                type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
+              <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="">Select Category</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Drinks">Drinks</option>
+              </select>
               <button type="submit">Update</button>
             </form>
           </div>
