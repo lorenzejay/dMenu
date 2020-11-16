@@ -41,7 +41,7 @@ const Register = ({ history }) => {
       {error && <Message variant="danger">{error}</Message>}
       {message && <Message variant="danger">{message}</Message>}
       <div className="register-content">
-        <img src={"/clipart/undraw_cooking_lyxy.png"} />
+        <img src={"/clipart/undraw_cooking_lyxy.png"} alt="person sitting on top of a chefs hat." />
         <Form title="Register" handleSubmit={handleRegister}>
           <Input
             placeholder="Email"

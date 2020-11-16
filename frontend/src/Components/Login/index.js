@@ -32,7 +32,7 @@ const Login = ({ history, location }) => {
       {isLoading && <Loader />}
       {error && <Message variant="danger">{error}</Message>}
       <div className="login-content">
-        <img src={"/clipart/undraw_Chef_cu0r.png"} />
+        <img src={"/clipart/undraw_Chef_cu0r.png"} alt="chefs ready to cook." />
         <Form title="Login" handleSubmit={handleLogin}>
           <Input
             placeholder="Email"
