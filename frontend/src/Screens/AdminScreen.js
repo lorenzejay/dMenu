@@ -104,7 +104,10 @@ const AdminScreen = ({ history }) => {
   return (
     <div className="admin-screen">
       <h1>Edit Menu</h1>
-      <Link to={`/user/menu/${userInfo._id}`}>View Menu Here</Link>
+      <div className="admin-links">
+        <Link to={`/user/menu/${userInfo._id}`}>View Menu Here</Link>
+        <Link to={`/qrcode/${userInfo._id}`}>View QR Code Here</Link>
+      </div>
 
       <div className="admin-content">
         {isLoading && <Loader />}

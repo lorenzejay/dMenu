@@ -45,6 +45,10 @@
 //admin screen
 .admin-screen {
   padding: 2%;
+  .admin-links {
+    display: flex;
+    flex-direction: column;
+  }
   button {
     width: 100%;
     align-self: flex-start;
@@ -169,4 +173,13 @@
       }
     }
   }
+}
+
+//qr code screen
+.qr-order-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
 }

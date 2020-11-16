@@ -8,6 +8,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import AdminScreen from "./Screens/AdminScreen";
 import MenuItemEditScreen from "./Screens/MenuItemEditScreen";
+import QrCodeScreen from "./Screens/QrCodeScreen";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route path="/user/menu/:id" component={MenuScreens} />
           <Route path="/user/editmenu" component={AdminScreen} />
+          <Route path="/qrcode/:id" component={QrCodeScreen} />
           <Route path="/user/menuitem/:id" component={MenuItemEditScreen} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
