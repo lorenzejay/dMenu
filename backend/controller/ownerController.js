@@ -163,7 +163,9 @@ export const getUserMenu = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
-    res.json(user.menu);
+    const menu = user.menu;
+    const restaurantName = user.restaurantName;
+    res.json({ menu, restaurantName });
   } else {
     res.status(400);
     throw new Error("User not Found");
@@ -189,8 +191,8 @@ export const createUserMenu = asyncHandler(async (req, res) => {
   }
 });
 
-// GET users menu by id
-// get /:id/menu
+// GET menuItem by id
+// get menu/:id
 // PRIVATE
 export const getMenuItem = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
@@ -231,8 +233,9 @@ export const updateMenuItem = asyncHandler(async (req, res) => {
 export const deleteMenuItem = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const menuItem = await user.menu.id(req.params.id);
-  if (user) {
-    user.menu.pop(menuItem);
+  if (user && menuItem) {
+    user.menu.pull({ _id: req.params.id });
+
     await user.save();
     res.json("Menu item removed");
   } else {
