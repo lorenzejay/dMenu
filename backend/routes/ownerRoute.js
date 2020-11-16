@@ -20,7 +20,7 @@ router.post("/login", userAuth);
 //register user
 router.route("/").post(registerUser);
 
-router.route("/:id/menu").get(protect, getUserMenu).post(protect, createUserMenu);
+router.route("/:id/menu").get(getUserMenu).post(protect, createUserMenu);
 router
   .route("/menu/:id")
   .put(protect, updateMenuItem)

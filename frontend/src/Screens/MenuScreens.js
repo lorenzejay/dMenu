@@ -14,9 +14,6 @@ const MenuScreens = ({ match }) => {
   const userMenu = useSelector((state) => state.userMenu);
   const { isLoading, error, success, menu } = userMenu;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   useEffect(() => {
     dispatch(getMenu(userId));
   }, [dispatch, userId, success]);

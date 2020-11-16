@@ -157,19 +157,11 @@ export const updateMenu = (menu) => async (dispatch, getState) => {
 //updated actions
 
 //get user menu
-export const getMenu = (id) => async (dispatch, getState) => {
+export const getMenu = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_GET_MENU_REQUEST });
-    const {
-      userLogin: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-    const { data } = await axios.get(`/api/users/${id}/menu`, config);
-    console.log(data);
+
+    const { data } = await axios.get(`/api/users/${id}/menu`);
     dispatch({ type: USER_GET_MENU_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
