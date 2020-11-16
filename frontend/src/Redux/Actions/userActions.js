@@ -169,6 +169,7 @@ export const getMenu = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(`/api/users/${id}/menu`, config);
+    console.log(data);
     dispatch({ type: USER_GET_MENU_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

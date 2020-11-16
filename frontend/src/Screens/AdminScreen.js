@@ -146,7 +146,7 @@ const AdminScreen = ({ history }) => {
               value={calories}
               onChange={(e) => setCalories(e.target.value)}
             />
-            <select onChange={(e) => setCategory(e.target.value)}>
+            <select onChange={(e) => setCategory(e.target.value)} value={category}>
               <option value="">Select Category</option>
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
@@ -169,31 +169,32 @@ const AdminScreen = ({ history }) => {
               </tr>
             </tbody>
 
-            {menu.map((item, i) => (
-              <tbody key={i}>
-                <tr>
-                  <td>{item.name}</td>
-                  <td>
-                    <img src={item.image} alt={item.description} style={{ objectFit: "cover" }} />
-                  </td>
-                  <td>{item.calories}</td>
-                  <td>{item.description}</td>
-                  <td>${item.price}</td>
-                  <td>{item.category}</td>
-                  <td style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Link to={`/user/menuitem/${item._id}`}>
-                      <FaEdit size={20} />
-                    </Link>
+            {menu.menu &&
+              menu.menu.map((item, i) => (
+                <tbody key={i}>
+                  <tr>
+                    <td>{item.name}</td>
+                    <td>
+                      <img src={item.image} alt={item.description} style={{ objectFit: "cover" }} />
+                    </td>
+                    <td>{item.calories}</td>
+                    <td>{item.description}</td>
+                    <td>${item.price}</td>
+                    <td>{item.category}</td>
+                    <td style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Link to={`/user/menuitem/${item._id}`}>
+                        <FaEdit size={20} />
+                      </Link>
 
-                    <FaTrash
-                      size={20}
-                      style={{ cursor: "pointer" }}
-                      onClick={() => deleteItemHandler(item._id)}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            ))}
+                      <FaTrash
+                        size={20}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => deleteItemHandler(item._id)}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
           </Table>
         </div>
       </div>

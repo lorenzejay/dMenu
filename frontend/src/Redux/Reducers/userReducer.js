@@ -104,7 +104,7 @@ const userUpdateMenuReducer = (state = {}, action) => {
   }
 };
 
-export const userMenuReducer = (state = { menu: [] }, action) => {
+export const userMenuReducer = (state = { menu: {} }, action) => {
   switch (action.type) {
     case USER_GET_MENU_REQUEST:
       return { ...state, isLoading: true };
