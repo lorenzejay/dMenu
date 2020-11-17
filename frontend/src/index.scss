@@ -212,8 +212,27 @@
 
 @media screen and (max-width: 600px) {
   .menu-section {
+    .menu-section-options {
+      gap: 12px;
+    }
     .menu-section-items {
       grid-template-columns: repeat(1, 1fr);
+    }
+    .card {
+      .card-contents {
+        flex-direction: column;
+        .card-image {
+          width: 100%;
+          padding: 0;
+          img {
+            width: 100%;
+          }
+        }
+        .card-description {
+          width: 100%;
+          padding: 5%;
+        }
+      }
     }
   }
 }
