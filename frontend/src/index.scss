@@ -209,3 +209,11 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .menu-section {
+    .menu-section-items {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
