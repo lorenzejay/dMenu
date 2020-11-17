@@ -16,7 +16,7 @@ const Header = () => {
     <nav className="navbar">
       <div className="logo">
         <Link to="/" className="logo-link">
-          dMenu
+          <span style={{ textTransform: "none" }}>Le Menu</span>
         </Link>
       </div>
       {!userInfo ? (
@@ -33,7 +33,7 @@ const Header = () => {
           <li>Welcome {userInfo.name}</li>
 
           <li>
-            <Link to="/user/editmenu">Menu</Link>
+            <Link to="/user/editmenu">Edit Menu</Link>
           </li>
           <li>
             <Link to="/login" onClick={handleLogout}>
