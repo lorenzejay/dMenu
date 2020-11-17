@@ -22,7 +22,7 @@ const QrCodeScreen = (match, history) => {
       <div className="qr-content-screen">
         <h1>{userInfo.restaurantName}</h1>
         <p>View menu here</p>
-        <QRCode value={`/menu/${userInfo._id}`} />
+        <QRCode value={`http://dimenu.herokuapp.com/menu/${userInfo._id}`} />
       </div>
     </div>
   );
