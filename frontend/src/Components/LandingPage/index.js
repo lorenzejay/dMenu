@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="landing-page-contents">
-        <h1>Welcome to Le Menu</h1>
+        <h1>Welcome to DiMenu</h1>
         <p>Modern, Minimalistic and Simple</p>
 
         <div className="landing-page-mission-statement">
