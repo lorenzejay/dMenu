@@ -90,56 +90,55 @@ const MenuItemEditScreen = ({ history, match }) => {
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         <div className="menu-item-edit-form-item">
-          <div className="menu-item-edit-form">
-            <form onSubmit={handleUpdateMenuItem}>
-              <h1>Edit Item</h1>
-              <input
-                placeholder="Name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                placeholder="Image URL here or use selector below"
-                type="text"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              />
+          <form onSubmit={handleUpdateMenuItem}>
+            <h1>Edit Item</h1>
+            <input
+              placeholder="Name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              placeholder="Image URL here or use selector below"
+              type="text"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
 
-              <input name="image-selector" type="file" onChange={handleImageSubmit} />
+            <input name="image-selector" type="file" onChange={handleImageSubmit} />
 
-              <textarea
-                rows="4"
-                cols="50"
-                placeholder="Description"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+            <textarea
+              rows="4"
+              cols="50"
+              placeholder="Description"
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
 
-              <input
-                placeholder="Price"
-                type="number"
-                value={price || ""}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-              <input
-                placeholder="Calories"
-                type="number"
-                value={calories || ""}
-                onChange={(e) => setCalories(e.target.value)}
-              />
-              <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="">Select Category</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Sides">Sides</option>
-                <option value="Drinks">Drinks</option>
-              </select>
-              <button type="submit">Update</button>
-            </form>
-          </div>
+            <input
+              placeholder="Price"
+              type="number"
+              value={price || ""}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            <input
+              placeholder="Calories"
+              type="number"
+              value={calories || ""}
+              onChange={(e) => setCalories(e.target.value)}
+            />
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="">Select Category</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Sides">Sides</option>
+              <option value="Drinks">Drinks</option>
+            </select>
+            <button type="submit">Update</button>
+          </form>
+
           <div>
             <h1>Your Item</h1>
             <MenuItemCard item={menuItem} />
