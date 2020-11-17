@@ -163,7 +163,7 @@ const AdminScreen = ({ history }) => {
             <button type="submit">Add to menu</button>
           </form>
 
-          <Table striped bordered hover variant="dark">
+          <Table responsive striped bordered hover variant="dark">
             <tbody>
               <tr>
                 <th>Food</th>
