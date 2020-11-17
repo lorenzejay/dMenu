@@ -16,12 +16,30 @@
       input {
         margin-top: 3vh;
         font-size: 16px;
-        height: 5vh;
+        height: 6vh;
       }
       button {
         margin-top: 3vh;
         height: 7vh;
         font-size: 18px;
+        border-radius: 15px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .register-page {
+    .register-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      form {
+        width: 100%;
+        min-height: 60vh;
       }
     }
   }
