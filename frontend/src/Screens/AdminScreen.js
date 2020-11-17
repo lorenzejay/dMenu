@@ -42,6 +42,11 @@ const AdminScreen = ({ history }) => {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
+    if (userInfo === null || !userInfo) {
+      history.push("/login");
+    } else {
+      dispatch(getMenu(userInfo._id));
+    }
     if (createSuccess) {
       setName("");
       setImage("");
@@ -51,12 +56,7 @@ const AdminScreen = ({ history }) => {
       setCategory("");
       dispatch({ type: USER_CREATE_MENU_RESET });
     }
-    if (!userInfo) {
-      history.push("/login");
-    } else {
-      dispatch(getMenu(userInfo._id));
-    }
-  }, [dispatch, history, userInfo, success, createSuccess, deleteSuccess]);
+  }, [dispatch, history, userInfo, success, createSuccess, deleteSuccess, userLogin]);
 
   const handleImageSubmit = async (e) => {
     const file = e.target.files[0];
@@ -104,10 +104,13 @@ const AdminScreen = ({ history }) => {
   return (
     <div className="admin-screen">
       <h1>Edit Menu</h1>
-      <div className="admin-links">
-        <Link to={`/menu/${userInfo._id}`}>View Menu Here</Link>
-        <Link to={`/qrcode/${userInfo._id}`}>View QR Code Here</Link>
-      </div>
+
+      {userInfo && (
+        <div className="admin-links">
+          <Link to={`/menu/${userInfo._id}`}>View Menu Here</Link>
+          <Link to={`/qrcode/${userInfo._id}`}>View QR Code Here</Link>
+        </div>
+      )}
 
       <div className="admin-content">
         {isLoading && <Loader />}
