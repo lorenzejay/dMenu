@@ -1,4 +1,8 @@
 .landing-page {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
   .landing-page-contents {
     padding: 5%;
     display: flex;
