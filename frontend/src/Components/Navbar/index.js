@@ -56,43 +56,6 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-    // <div className="nav-wrapper">
-    //   <nav className="navbar">
-    //     <div className="logo">
-    //       <Link to="/" className="logo-link">
-    //         <span style={{ textTransform: "none" }}>Le Menu</span>
-    //       </Link>
-    //     </div>
-    //     {!userInfo ? (
-    //       <ul className={`nav-links ${navActive ? "nav-active" : ""}`}>
-    //         <li>
-    //           <Link to="/login">Login</Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/register">Register</Link>
-    //         </li>
-    //       </ul>
-    //     ) : (
-    //       <ul className="nav-links">
-    //         <li>Welcome {userInfo.name}</li>
-
-    //         <li>
-    //           <Link to="/user/editmenu">Edit Menu</Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/login" onClick={handleLogout}>
-    //             Logout
-    //           </Link>
-    //         </li>
-    //       </ul>
-    //     )}
-    //     <div className="burger" onClick={() => setNavActive(!navActive)}>
-    //       <div></div>
-    //       <div></div>
-    //       <div></div>
-    //     </div>
-    //   </nav>
-    // </div>
   );
 };
 
