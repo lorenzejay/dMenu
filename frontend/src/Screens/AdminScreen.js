@@ -154,6 +154,7 @@ const AdminScreen = ({ history }) => {
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
               <option value="Dinner">Dinner</option>
+              <option value="Sides">Sides</option>
               <option value="Drinks">Drinks</option>
             </select>
             <button type="submit">Add to menu</button>

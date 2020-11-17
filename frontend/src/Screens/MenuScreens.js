@@ -43,6 +43,7 @@ const MenuScreens = ({ match }) => {
           <p onClick={(e) => setFilterBy(e.target.textContent)}>Breakfast</p>
           <p onClick={(e) => setFilterBy(e.target.textContent)}>Lunch</p>
           <p onClick={(e) => setFilterBy(e.target.textContent)}>Dinner</p>
+          <p onClick={(e) => setFilterBy(e.target.textContent)}>Sides</p>
           <p onClick={(e) => setFilterBy(e.target.textContent)}>Drinks</p>
         </div>
       </div>
