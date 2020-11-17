@@ -4,20 +4,16 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   userCreateMenuItemReducer,
   userDeleteMenuItemReducer,
-  userDetailsReducer,
   userGetMenuItemReducer,
   userLoginReducer,
   userMenuReducer,
   userRegisterReducer,
   userUpdateMenuItemReducer,
-  userUpdateMenuReducer,
 } from "./Reducers/userReducer";
 
 const reducers = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer,
-  menuUpdate: userUpdateMenuReducer,
 
   userMenu: userMenuReducer,
   userCreateMenuItem: userCreateMenuItemReducer,

@@ -6,15 +6,6 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_FAIL,
   USER_REGISTER_SUCCESS,
-  USER_DETAILS_FAIL,
-  USER_DETAILS_REQUEST,
-  USER_DETAILS_SUCCESS,
-  USER_UPDATE_DETAILS_REQUEST,
-  USER_UPDATE_DETAILS_SUCCESS,
-  USER_UPDATE_DETAILS_FAIL,
-  USER_UPDATE_MENU_REQUEST,
-  USER_UPDATE_MENU_SUCCESS,
-  USER_UPDATE_MENU_FAIL,
   USER_GET_MENU_REQUEST,
   USER_GET_MENU_SUCCESS,
   USER_GET_MENU_FAIL,
@@ -83,76 +74,6 @@ export const register = (name, email, password, restaurantName) => async (dispat
     });
   }
 };
-
-// export const getUserMenuDetails = (id) => async (dispatch, getState) => {
-//   try {
-//     dispatch({ type: USER_DETAILS_REQUEST });
-//     const {
-//       userLogin: { userInfo },
-//     } = getState();
-
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${userInfo.token}`,
-//       },
-//     };
-//     const { data } = await axios(`/api/users/${id}`, config);
-//     console.log(data);
-//     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
-//   } catch (error) {
-//     dispatch({
-//       type: USER_DETAILS_FAIL,
-//       payload: error.response.data,
-//     });
-//   }
-// };
-
-// export const updateUserDetails = (user) => async (dispatch, getState) => {
-//   try {
-//     dispatch({ type: USER_UPDATE_DETAILS_REQUEST });
-//     const {
-//       userLogin: { userInfo },
-//     } = getState();
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${userInfo.token}`,
-//       },
-//     };
-//     const { data } = await axios.put("/api/users/profile", user, config);
-//     dispatch({ type: USER_UPDATE_DETAILS_SUCCESS, payload: data });
-//   } catch (error) {
-//     dispatch({
-//       type: USER_UPDATE_DETAILS_FAIL,
-//       payload:
-//         error.response && error.response.data.message ? error.response.data.message : error.message,
-//     });
-//   }
-// };
-
-// export const updateMenu = (menu) => async (dispatch, getState) => {
-//   try {
-//     dispatch({ type: USER_UPDATE_MENU_REQUEST });
-//     const {
-//       userLogin: { userInfo },
-//     } = getState();
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${userInfo.token}`,
-//       },
-//     };
-//     const { data } = await axios.put("/api/users/menu", menu, config);
-//     dispatch({ type: USER_UPDATE_MENU_SUCCESS, payload: data });
-//   } catch (error) {
-//     dispatch({
-//       type: USER_UPDATE_MENU_FAIL,
-//       payload:
-//         error.response && error.response.data.message ? error.response.data.message : error.message,
-//     });
-//   }
-// };
 
 //updated actions
 
