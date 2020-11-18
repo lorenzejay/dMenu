@@ -142,9 +142,8 @@
         &:hover {
           transform: scale(1.2);
         }
-        .card-contents {
-          img {
-          }
+        .card-image {
+          max-height: 170px;
         }
       }
     }

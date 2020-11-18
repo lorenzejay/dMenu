@@ -36,12 +36,12 @@ const MenuItemEditScreen = ({ history, match }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_MENU_ITEM_RESET });
-      history.push(`/menu/${menuId}`);
+      history.push(`/user/editmenu/${userInfo._id}`);
     }
     if (!userInfo) {
       history.push("/login");
     } else {
-      if (!menuItem.name) {
+      if (!menuItem.name || menuItem._id !== menuId) {
         dispatch(getMenuItem(menuId));
       } else {
         setName(menuItem.name);
@@ -139,7 +139,7 @@ const MenuItemEditScreen = ({ history, match }) => {
             <button type="submit">Update</button>
           </form>
 
-          <div>
+          <div className="menu-item-edit-card">
             <h1>Your Item</h1>
             <MenuItemCard item={menuItem} />
           </div>

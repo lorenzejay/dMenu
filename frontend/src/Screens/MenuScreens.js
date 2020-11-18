@@ -10,13 +10,15 @@ const MenuScreens = ({ match }) => {
   const [filterBy, setFilterBy] = useState("All");
   const [menuItems, setMenuItems] = useState();
   const dispatch = useDispatch();
-
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const userMenu = useSelector((state) => state.userMenu);
   const { isLoading, error, success, menu } = userMenu;
 
+  //not a logged in user
   useEffect(() => {
     dispatch(getMenu(userId));
-  }, [dispatch, userId, success]);
+  }, [dispatch, userId, success, userInfo.menu]);
 
   //filter by
   useEffect(() => {
