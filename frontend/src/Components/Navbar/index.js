@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "./styles.scss";
 import { Nav, NavDropdown, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -8,7 +7,6 @@ import { logout } from "../../Redux/Actions/userActions";
 import { Navbar } from "react-bootstrap";
 //add links later
 const Header = () => {
-  const [navActive, setNavActive] = useState(false);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -32,7 +30,7 @@ const Header = () => {
                 <Nav>
                   <LinkContainer to="/user/editmenu">
                     <Nav.Link>
-                      <i class="fas fa-carrot"></i>Edit Menu
+                      <i className="fas fa-carrot"></i>Edit Menu
                     </Nav.Link>
                   </LinkContainer>
                   <NavDropdown title={userInfo.name} id="username">

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMenu } from "../Redux/Actions/userActions";
 import { Link } from "react-router-dom";
 
-const QrCodeScreen = (match, history) => {
+const QrCodeScreen = ({ history }) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -15,7 +15,7 @@ const QrCodeScreen = (match, history) => {
     } else {
       dispatch(getMenu(userInfo._id));
     }
-  }, [dispatch]);
+  }, [dispatch, history, userInfo]);
   return (
     <div className="qr-order-screen">
       <Link to="/user/editmenu">Back</Link>

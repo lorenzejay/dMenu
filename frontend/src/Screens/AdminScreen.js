@@ -39,7 +39,7 @@ const AdminScreen = ({ history }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
   const [category, setCategory] = useState("");
-  const [uploading, setUploading] = useState(false);
+  const [setUploading] = useState(false);
 
   useEffect(() => {
     if (userInfo === null || !userInfo) {

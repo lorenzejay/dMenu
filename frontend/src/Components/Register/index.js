@@ -60,7 +60,7 @@ const Register = ({ history }) => {
           <Input
             placeholder="Restaurant Name"
             type="text"
-            value="restaurantName"
+            name="restaurantName"
             value={restaurantName}
             handleChange={(e) => setRestaurantName(e.target.value)}
           />
